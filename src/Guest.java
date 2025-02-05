@@ -37,7 +37,7 @@ public class Guest {
     }
 
     public String getDescription(){
-        DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyy-MM-dd");
+        DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyy");
         String date = dateOfBirth.format(DATE_FORMAT);
         return name + " " + surname +
                 " (" + date + ")";

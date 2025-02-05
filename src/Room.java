@@ -5,18 +5,18 @@ public class Room {
     private int numberOfBeds;
     private boolean hasBalcony;
     private boolean hasSeaView;
-    private BigDecimal bookingCost; //in czech crowns per night
+    private BigDecimal costPerNight; //in czech crowns per night
 
-    public Room(int roomNumber, int numberOfBeds, boolean hasBalcony, boolean hasSeaView, BigDecimal bookingCost) {
-        this.bookingCost = bookingCost;
+    public Room(int roomNumber, int numberOfBeds, boolean hasBalcony, boolean hasSeaView, BigDecimal costPerNight) {
+        this.costPerNight = costPerNight;
         this.roomNumber = roomNumber;
         this.numberOfBeds = numberOfBeds;
         this.hasBalcony = hasBalcony;
         this.hasSeaView = hasSeaView;
     }
 
-    public BigDecimal getBookingCost() {
-        return bookingCost;
+    public BigDecimal getCostPerNight() {
+        return costPerNight;
     }
 
     public int getRoomNumber() {
@@ -27,11 +27,11 @@ public class Room {
         return numberOfBeds;
     }
 
-    public boolean isHasBalcony() {
+    public boolean hasBalcony() {
         return hasBalcony;
     }
 
-    public boolean isHasSeaView() {
+    public boolean hasSeaView() {
         return hasSeaView;
     }
 

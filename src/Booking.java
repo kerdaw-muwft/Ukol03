@@ -1,5 +1,7 @@
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Booking {
@@ -9,7 +11,7 @@ public class Booking {
     private TypeOfVacation typeOfVacation;
     private LocalDate startDate;
     private LocalDate endDate;
-    private DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyy-MM-dd");
+    private DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-M-yyy");
 
     public Booking(Room room, Guest guest, List otherGuests, TypeOfVacation typeOfVacation, LocalDate startDate, LocalDate endDate) {
         this.room = room;
@@ -54,7 +56,7 @@ public class Booking {
 
     public String getStartDate() {
         String date = startDate.format(DATE_FORMAT);
-        return "(" + date + ")";
+        return date;
     }
 
     public void setStartDate(LocalDate startDate) {
@@ -63,7 +65,19 @@ public class Booking {
 
     public String getEndDate() {
         String date = endDate.format(DATE_FORMAT);
-        return "(" + date + ")";
+        return date;
+    }
+    public String getFormattedSummary(){
+        return (this.getStartDate() + " až " + this.getEndDate() + ": "+
+                         this.guest.getDescription() + "[" +
+                         (this.otherGuests.size()+1) + ", " + (this.room.hasSeaView()?"ano":"ne") +
+                         "] za " + this.getTotalPrice() + " kč");
+    }
+    public int getBookingLength(){
+        return (int) ChronoUnit.DAYS.between(startDate,endDate);
+    }
+    public BigDecimal getTotalPrice(){
+        return room.getCostPerNight().multiply(BigDecimal.valueOf(getBookingLength()));
     }
 
     public void setEndDate(LocalDate endDate) {
